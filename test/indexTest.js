@@ -1,6 +1,40 @@
 require ( './helpers.js' );
 
+let cats = ["Milo", "Otis", "Garfield"];
+
+function destructivelyAppendCat(name) {
+  cats.push(name);
+}
+
+function destructivelyPrependCat(name) {
+  cats.unshift(name);
+}
+function destructivelyRemoveLastCat() {
+  cats.pop();
+}
+function destructivelyRemoveFirstCat() {
+  cats.shift();
+}
+function appendCat(name) {
+  return [...cats, name];
+}
+function prependCat(name) {
+  return [name, ...cats];
+}
+function removeLastCat() {
+  return cats.slice(0, -1);
+}
+function removeFirstCat() {
+  return cats.slice(1);
+}
 describe('index.js', function () {
+
+  beforeEach(function () {
+    cats.length = 0;
+
+    cats.push("Milo", "Otis", "Garfield");
+  });
+  
   describe('cats', function () {
     it('is assigned an initial value of ["Milo", "Otis", "Garfield"]', function () {
       expect(cats).to.have.ordered.members(["Milo", "Otis", "Garfield"]);
@@ -8,11 +42,8 @@ describe('index.js', function () {
   });
 
   describe('Array functions', function () {
-    beforeEach(function () {
-      cats.length = 0;
 
-      cats.push('Milo', 'Otis', 'Garfield');
-    });
+    
 
     describe('destructivelyAppendCat(name)', function () {
       it('appends a cat to the end of the cats array', function () {
